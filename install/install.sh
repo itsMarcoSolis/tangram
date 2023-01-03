@@ -6,7 +6,7 @@
 #
 # Install with this command (from your Linux machine):
 #
-# bash <(curl -sSL https://raw.githubusercontent.com/tangramproject/tangram/master/install/linux/install.sh)
+# bash <(curl -sSL https://raw.githubusercontent.com/itsMarcoSolis/tangram/migrate-install-script/install/linux/install.sh)
 
 # -e option instructs bash to immediately exit if any command [1] has a non-zero exit status
 # We do not want users to end up with a partially working install, so we exit the script
@@ -70,13 +70,13 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   IS_MACOS=true
   ARCHITECTURE_UNIFIED="osx-x64"
 
-  TANGRAM_XTGMNODE_VERSION=$(curl --silent "https://api.github.com/repos/tangramproject/tangram/releases/latest" | grep -w '"tag_name": "v.*"' | cut -f2 -d ":" | cut -f2 -d "\"")
+  TANGRAM_XTGMNODE_VERSION=$(curl --silent "https://api.github.com/repos/itsMarcoSolis/tangram/releases/latest" | grep -w '"tag_name": "v.*"' | cut -f2 -d ":" | cut -f2 -d "\"")
   TANGRAM_XTGMNODE_GROUP="tangram_xtgmnode"
   TANGRAM_XTGMNODE_USER="_tangram_xtgmnode"
 
   LAUNCHD_SERVICE_PATH="/Library/LaunchDaemons/"
   TANGRAM_XTGMNODE_LAUNCHD_SERVICE="tangram-xtgmnode.plist"
-  TANGRAM_XTGMNODE_LAUNCHD_SERVICE_URL="https://raw.githubusercontent.com/tangramproject/tangram/master/install/macos/${TANGRAM_XTGMNODE_LAUNCHD_SERVICE}"
+  TANGRAM_XTGMNODE_LAUNCHD_SERVICE_URL="https://raw.githubusercontent.com/itsMarcoSolis/tangram/migrate-install-script/install/macos/${TANGRAM_XTGMNODE_LAUNCHD_SERVICE}"
 
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   IS_LINUX=true
@@ -108,13 +108,13 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
 
   INIT=$(ps --no-headers -o comm 1)
 
-  TANGRAM_XTGMNODE_VERSION=$(curl --silent "https://api.github.com/repos/tangramproject/tangram/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")')
+  TANGRAM_XTGMNODE_VERSION=$(curl --silent "https://api.github.com/repos/itsMarcoSolis/tangram/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")')
   TANGRAM_XTGMNODE_GROUP="tangram-xtgmnode"
   TANGRAM_XTGMNODE_USER="tangram-xtgmnode"
 
   SYSTEMD_SERVICE_PATH="/etc/systemd/system/"
   TANGRAM_XTGMNODE_SYSTEMD_SERVICE="tangram-xtgmnode.service"
-  TANGRAM_XTGMNODE_SYSTEMD_SERVICE_URL="https://raw.githubusercontent.com/tangramproject/tangram/master/install/linux/${TANGRAM_XTGMNODE_SYSTEMD_SERVICE}"
+  TANGRAM_XTGMNODE_SYSTEMD_SERVICE_URL="https://raw.githubusercontent.com/itsMarcoSolis/tangram/migrate-install-script/install/linux/${TANGRAM_XTGMNODE_SYSTEMD_SERVICE}"
 
 else
   echo "Unsupported OS type ${OSTYPE}"
@@ -124,7 +124,7 @@ fi
 
 TANGRAM_XTGMNODE_VERSION_SHORT=$(echo "${TANGRAM_XTGMNODE_VERSION}" | cut -c 2-)
 TANGRAM_XTGMNODE_ARTIFACT_PREFIX="tangram-xtgmnode_${TANGRAM_XTGMNODE_VERSION_SHORT}_"
-TANGRAM_XTGMNODE_URL_PREFIX="https://github.com/tangramproject/tangram/releases/download/${TANGRAM_XTGMNODE_VERSION}/"
+TANGRAM_XTGMNODE_URL_PREFIX="https://github.com/itsMarcoSolis/tangram/releases/download/${TANGRAM_XTGMNODE_VERSION}/"
 
 TANGRAM_XTGMNODE_OPT_PATH="/opt/tangram/xtgmnode/"
 TANGRAM_XTGMNODE_TMP_PATH="/tmp/opt/tangram/xtgmnode/"
@@ -624,7 +624,7 @@ install_archive() {
       else
         printf "\n"
         printf "  %b Unknown system %s. Please report this issue on\n" "${CROSS}" "${INIT}"
-        printf "      https://github.com/tangramproject/tangram/issues/new"
+        printf "      https://github.com/itsMarcoSolis/tangram/issues/new"
       fi
     elif [ "${IS_MACOS}" = true ]; then
       if [ "${IS_NON_INTERACTIVE}" = true ]; then
